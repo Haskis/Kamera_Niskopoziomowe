@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   //Set's logo image on imageLabel
   QImage logoImage;
-  logoImage.load("../Kamera_Niskopoziomowe/Pliki/VivotekLogo.jpeg");
+  logoImage.load("Pliki/VivotekLogo.jpeg");
   ui->labelImage->setPixmap(QPixmap::fromImage(logoImage));
   ui->labelImage->setScaledContents(true);
 
@@ -180,10 +180,9 @@ void MainWindow::on_checkBoxEnableMovement_toggled(bool checked)
 
 void MainWindow::on_pushButtonTrain_clicked(){
   assert(imgs.size() == labels.size());
-
-  int numberOfPeople = trainingSet.getTrainingSet(imgs,labels, names);
-
-  qDebug()<<numberOfPeople;
+  //int numberOfPeople = 2
+  trainingSet.getTrainingSet(imgs, labels,names);
+  int numberOfPeople = names.size();
   //recognizer = cv::createFisherFaceRecognizer(numberOfPeople);
   //recognizer = cv::createLBPHFaceRecognizer();
   recognizer = cv::createEigenFaceRecognizer(numberOfPeople);
